@@ -1,7 +1,8 @@
+import Featured from './components/Featured';
 import Highlights from './components/Highlights';
 import Landing from './components/Landing';
 import Nav from './components/Nav'; 
-import Highlight from './components/ul/Highlight';
+import Highlight from './components/ui/Highlight';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Nav/>
       <Landing/>
       <Highlights/>
+      <Featured/>
     </div>
   );
 }
