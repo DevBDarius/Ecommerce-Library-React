@@ -1,11 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Book from '../components/ui/Book';
 import Price from '../components/ui/Price';
 import Rating from '../components/ui/Rating';
 
 const Bookinfo = ({ books }) => {
+  const { id } = useParams();
+  const book = books.find(book => +book.id === +id);
+  console.log(book);
   return (
     <div id="books__body">
       <main id="books__main">
@@ -23,13 +26,13 @@ const Bookinfo = ({ books }) => {
             </div>
             <div className="book__selected">
               <figure className="book__selected--figure">
-                <img className='book__selected--img' src="https://covers.openlibrary.org/b/id/8091016-L.jpg" alt="" />
+                <img className='book__selected--img' src={book.url} alt="" />
               </figure>
               <div className="book__selected--description">
-                <h2 className="book__selected--title">Crack the coding interview</h2>
-                <Rating rating={books[0].rating} />
+                <h2 className="book__selected--title">{book.title}</h2>
+                <Rating rating={book.rating} />
                 <div className="book__selected--price">
-                  <Price book={books[0]} />
+                  <Price book={book} />
                 </div>
                 <div className="book__summary">
                   <div className="book__summary--title">Summary</div>
@@ -55,10 +58,15 @@ const Bookinfo = ({ books }) => {
                 Recommended Books
               </h2>
             </div>
-            <Book book={books[0]} />
-            <Book book={books[0]} />
-            <Book book={books[0]} />
-            <Book book={books[0]} />
+            <div className="books">
+              {
+                books
+                  .filter(book => book.rating === 5 && +book.id !== +id)
+                  .slice(0, 4)
+                  .map(book =>
+                    <Book book={book} key={book.id}/>)
+              }
+            </div>
           </div>
         </div>
       </main>
