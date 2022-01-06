@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Route} from 'react-router-dom';
-import React, {useState, useEffect} from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import Footer from './components/Footer';
-import Nav from './components/Nav'; 
+import Nav from './components/Nav';
 import Home from './pages/Home';
 import Books from './pages/Books';
 import { books } from './data';
@@ -12,7 +12,15 @@ function App() {
   const [cart, setCart] = useState([]);
 
   function addToCart(book) {
-    setCart([...cart, book])
+    setCart([...cart, { ...book, quantity: 1 }])
+  }
+
+  function changeQuantity(book, quantity) {
+    setCart(cart.map((item) => {
+      return item.id === book.id ?
+        { ...item, quantity: +quantity } :
+        item
+    }))
   }
 
   useEffect(() => {
@@ -22,12 +30,13 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav/>
+        <Nav />
         <Route path="/" exact component={Home} />
-        <Route path="/books" exact render={() => <Books books={books}/>} />
-        <Route path="/books/:id" render={() => <Bookinfo books={books} addToCart={addToCart} cart={cart}/>} />
-        <Route path="/cart" render={() => <Cart/>} />
-        <Footer/>
+        <Route path="/books" exact render={() => <Books books={books} />} />
+        <Route path="/books/:id" render={() => <Bookinfo books={books} addToCart={addToCart} cart={cart} />} />
+        <Route path="/cart" render={() =>
+          <Cart cart={cart} changeQuantity={changeQuantity} />} />
+        <Footer />
       </div>
     </Router>
   );
