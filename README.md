@@ -1,4 +1,4 @@
-# [E-commerce Library app](https://devbdarius.github.io/Ecommerce-Library-React/)
+# [E-commerce Library app](https://fs-ecommerce-react.herokuapp.com/)
 
 Hey! I made this project to practice React JS.
 Main features:
