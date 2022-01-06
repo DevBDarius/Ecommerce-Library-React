@@ -32,6 +32,7 @@ const Book = ({ book }) => {
               <figure className="book__img--wrapper">
                 <img
                   src={img.src}
+                  alt='book cover'
                   className='book__img'
                 />
               </figure>
