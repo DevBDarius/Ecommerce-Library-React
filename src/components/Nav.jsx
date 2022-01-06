@@ -37,13 +37,13 @@ const Nav = ({cartSize}) => {
           </button>
           <ul className="menu__links">
             <li className="menu__list">
-              <Link to="/" className="menu__link">Home</Link>
+              <Link to="/" className="menu__link" onClick={toggleMenu}>Home</Link>
             </li>
             <li className="menu__list">
-              <Link to="/books" className="menu__link">Books</Link>
+              <Link to="/books" className="menu__link" onClick={toggleMenu}>Books</Link>
             </li>
             <li className="menu__list">
-              <Link to="/cart" className="menu__link">Cart</Link>
+              <Link to="/cart" className="menu__link" onClick={toggleMenu}>Cart</Link>
             </li>
           </ul>
         </div>
